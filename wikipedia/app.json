@@ -1,0 +1,15 @@
+{
+    "id": "bc372a64-0231-424f-9dc8-4eca0b1b34e5",
+    "version": "0.0.1",
+    "requiredApiVersion": "^1.4.0",
+    "iconFile": "icon.png",
+    "author": {
+        "name": "Kapil.Gautam",
+        "homepage": "Kapil.gautam",
+        "support": "kapil.gautam"
+    },
+    "name": "Wikipedia",
+    "nameSlug": "wikipedia",
+    "classFile": "Wikipedia.ts",
+    "description": "Integrate wikipedia with Rocket.Chat"
+}
