@@ -6,7 +6,6 @@ export class WikiGetter {
     private readonly url = 'http://en.wikipedia.org/w/api.php?';
 
     public async search(logger: ILogger, http: IHttp, phase: string, read: IRead): Promise<Array<GiphyResult>> {
-        // TODO: Maybe error out when they don't provide us with something?
         let search = phase.trim();
         if (!search) {
             search = 'random';
