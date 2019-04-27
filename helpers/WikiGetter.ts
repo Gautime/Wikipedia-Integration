@@ -21,7 +21,7 @@ if (response.statusCode !== HttpStatusCode.OK || !response.data || !response.dat
             logger.debug('The response data is not an Array:', response.data.data);
             throw new Error('Data is in a format we don\'t understand.');
         }
-        return response.data.data.map((r) => new WikiResult(r));
+        return response.data.query.map((r) => new WikiResult(r));
 
 
 }}
