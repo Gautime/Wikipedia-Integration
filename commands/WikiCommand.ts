@@ -24,9 +24,10 @@ export class WikiCommand implements ISlashCommand {
         modify: IModify, http: IHttp, persis: IPersistence): Promise<void> {
         const builder = modify.getCreator().startMessage().setSender(context.getSender()).setRoom(context.getRoom());
             try{
-            const wik = await this.app.getWikiGetter().search(this.app.getLogger(), http, context.getArguments().join(' '), read);
+             const term = context.getArguments().join(' ').trim();
 
-		    const term = context.getArguments().join(' ').trim();
+            const wik = await this.app.getWikiGetter().getOne(this.app.getLogger(), http, term, read);
+
 
 		    builder.addAttachment({
                 
@@ -35,7 +36,7 @@ export class WikiCommand implements ISlashCommand {
                     name: `/wiki ${term.trim()}`,
                     link: `https://en.wikipedia.org/wiki/${term.trim()}`,
                 },
-                
+                text: wik.extract
             });
             await modify.getCreator().finish(builder);
             }catch (e) {
