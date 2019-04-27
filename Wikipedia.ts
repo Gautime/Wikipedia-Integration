@@ -27,6 +27,7 @@ export class WikipediaApp extends App {
     }
     protected async extendConfiguration(configuration: IConfigurationExtend, environmentRead: IEnvironmentRead): Promise<void> {
         await configuration.slashCommands.provideSlashCommand(new WikiCommand(this));
+        
     }
 
 }

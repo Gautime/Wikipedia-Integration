@@ -16,13 +16,12 @@ export class WikiGetter {
 
             if (response.statusCode !== HttpStatusCode.OK || !response.data || !response.data.extract) {
                 logger.debug('Did not get a valid response', response);
-                throw new Error('Unable to retrieve the gif.');
+                throw new Error('Unable to retrieve the content.');
             } else if (typeof response.data.extract !== 'object') {
                 logger.debug('The response data is not an Object:', response.data.extract);
                 throw new Error('Data is in a format we don\'t understand.');
             }
-    
-            //console.log('The returned data:', response.data.query);
+            
             return new WikiResult(response.data.extract);
         }
 

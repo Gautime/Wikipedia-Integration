@@ -6,8 +6,8 @@ import { WikiResult } from '../helpers/WikiResult';
 
 export class WikiCommand implements ISlashCommand {
         public command = 'wiki';
-        public i18nParamsExample = 'Wikipedia_Search_Term';
-        public i18nDescription = 'Wikipedia_Command_Description';
+        public i18nParamsExample = 'wiki_search-term';
+        public i18nDescription = 'wiki-description';
         public providesPreview = false;
 
 	    constructor(private readonly app: WikipediaApp) { }
@@ -31,17 +31,13 @@ export class WikiCommand implements ISlashCommand {
 
 		    builder.addAttachment({
                 
-                author: {
-                    icon: 'https://github.com/Gautime/Wikipedia-Integration/blob/master/wiki.png',
-                    name: `/wiki ${term.trim()}`,
-                    link: `https://en.wikipedia.org/wiki/${term.trim()}`,
-                },
                 text: wik.mssg
+                
             });
             await modify.getCreator().finish(builder);
             }catch (e) {
-            this.app.getLogger().error('Failed getting a gif', e);
-            builder.setText('An error occurred when trying to send the gif :disappointed_relieved:');
+            this.app.getLogger().error('Failed getting text', e);
+            builder.setText('An error occurred when trying to send text :');
 
             modify.getNotifier().notifyUser(context.getSender(), builder.getMessage());
          }
