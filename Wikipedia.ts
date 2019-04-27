@@ -1,11 +1,13 @@
 import {
     IAppAccessors,
+    IConfigurationExtend,
+    IEnvironmentRead,
     ILogger,
 } from '@rocket.chat/apps-engine/definition/accessors';
 import { App } from '@rocket.chat/apps-engine/definition/App';
 import { IAppInfo } from '@rocket.chat/apps-engine/definition/metadata';
 import { WikiCommand } from './commands/WikiCommand';
-
+import { WikiGetter } from './helpers/WikiGetter';
 
 
 export class WikipediaApp extends App {

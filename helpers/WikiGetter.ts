@@ -5,7 +5,7 @@ import { WikiResult } from '../helpers/WikiResult';
 export class WikiGetter {
     private readonly url = 'http://en.wikipedia.org/w/api.php?';
 
-    public async search(logger: ILogger, http: IHttp, phase: string, read: IRead): Promise<Array<GiphyResult>> {
+    public async search(logger: ILogger, http: IHttp, phase: string, read: IRead): Promise<Array<WikiResult>> {
         let search = phase.trim();
         if (!search) {
             search = 'random';
@@ -21,7 +21,7 @@ if (response.statusCode !== HttpStatusCode.OK || !response.data || !response.dat
             logger.debug('The response data is not an Array:', response.data.data);
             throw new Error('Data is in a format we don\'t understand.');
         }
-        return new WikiResult(response.data.data));
+        return response.data.data.map((r) => new WikiResult(r));
 
 
-}
+}}

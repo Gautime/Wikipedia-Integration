@@ -26,7 +26,7 @@ export class WikiCommand implements ISlashCommand {
 		builder.addAttachment({
                 
                 author: {
-                    icon: wiki.png,
+                    icon: 'https://github.com/Gautime/Wikipedia-Integration/blob/master/wiki.png',
                     name: `/wiki ${term.trim()}`,
                     link: `https://en.wikipedia.org/wiki/${term.trim()}`,
                 },
