@@ -24,7 +24,7 @@ export class WikiCommand implements ISlashCommand {
         modify: IModify, http: IHttp, persis: IPersistence): Promise<void> {
         const builder = modify.getCreator().startMessage().setSender(context.getSender()).setRoom(context.getRoom());
             try{
-            const wik = await this.app.getWikiGetter();
+            const wik = await this.app.getWikiGetter().search(this.app.getLogger(), http, context.getArguments().join(' '), read);
 
 		    const term = context.getArguments().join(' ').trim();
 
