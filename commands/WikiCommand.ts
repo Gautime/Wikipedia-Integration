@@ -12,8 +12,11 @@ export class WikiCommand implements ISlashCommand {
 
 	    constructor(private readonly app: WikipediaApp) { }
 
-	  public executor(context: SlashCommandContext, read: IRead, modify: IModify, http: IHttp, persis: IPersistence): Promise<void> {
+	  public async executor(context: SlashCommandContext, read: IRead, modify: IModify, http: IHttp, persis: IPersistence): Promise<void> {
         
+        const parame = context.getArguments().join(' ');
+
+        if(!parame)
         throw new Error('Method not implemented.');
      }  
 
@@ -21,6 +24,8 @@ export class WikiCommand implements ISlashCommand {
         modify: IModify, http: IHttp, persis: IPersistence): Promise<void> {
         const builder = modify.getCreator().startMessage().setSender(context.getSender()).setRoom(context.getRoom());
             try{
+            const wik = await this.app.getWikiGetter();
+
 		    const term = context.getArguments().join(' ').trim();
 
 		    builder.addAttachment({
