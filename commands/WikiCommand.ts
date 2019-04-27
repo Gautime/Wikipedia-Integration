@@ -36,7 +36,7 @@ export class WikiCommand implements ISlashCommand {
                     name: `/wiki ${term.trim()}`,
                     link: `https://en.wikipedia.org/wiki/${term.trim()}`,
                 },
-                text: wik.extract
+                text: wik.mssg
             });
             await modify.getCreator().finish(builder);
             }catch (e) {
