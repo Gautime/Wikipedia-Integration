@@ -4,6 +4,8 @@ import {
     IEnvironmentRead,
     ILogger,
 } from '@rocket.chat/apps-engine/definition/accessors';
+import { MessageActionButtonsAlignment } from '@rocket.chat/apps-engine/definition/messages/MessageActionButtonsAlignment';
+import { MessageActionType } from '@rocket.chat/apps-engine/definition/messages/MessageActionType';
 import { App } from '@rocket.chat/apps-engine/definition/App';
 import { IAppInfo } from '@rocket.chat/apps-engine/definition/metadata';
 import { WikiCommand } from './commands/WikiCommand';
@@ -24,7 +26,7 @@ export class WikipediaApp extends App {
         return this.wikiGetter;
     }
     protected async extendConfiguration(configuration: IConfigurationExtend, environmentRead: IEnvironmentRead): Promise<void> {
-        await configuration.slashCommands.provideSlashCommand(new WikiCommand());
+        await configuration.slashCommands.provideSlashCommand(new WikiCommand(this));
     }
 
 }
