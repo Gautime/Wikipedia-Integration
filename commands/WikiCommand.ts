@@ -8,8 +8,8 @@ import { formatWithOptions } from 'util';
 
 export class WikiCommand implements ISlashCommand {
         public command = 'wiki';
-        public i18nParamsExample = 'wiki_search-term';
-        public i18nDescription = 'wiki-description';
+        public i18nParamsExample = 'wiki_search_term';
+        public i18nDescription = 'wiki_description';
         public providesPreview = false;
 
 	    constructor(private readonly app: WikipediaApp) { }
@@ -18,12 +18,10 @@ export class WikiCommand implements ISlashCommand {
         
        const parame = context.getArguments().join(' ');
 
-     if(!parame)
+        if(!parame){
        throw new Error('Method not implemented.');
-     }  
-
-       public async executeitem(item: ISlashCommandPreviewItem, context: SlashCommandContext, read: IRead,
-        modify: IModify, http: IHttp, persis: IPersistence): Promise<void> {
+          }  
+        
         const mg = modify.getCreator().startMessage().setSender(context.getSender()).setRoom(context.getRoom());
             try{
              const term = context.getArguments().join(' ').trim();
@@ -42,6 +40,6 @@ export class WikiCommand implements ISlashCommand {
          }
         }
     
-
-}
+      }
+      
 
