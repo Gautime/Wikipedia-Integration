@@ -24,21 +24,21 @@ export class WikiCommand implements ISlashCommand {
 
        public async executeitem(item: ISlashCommandPreviewItem, context: SlashCommandContext, read: IRead,
         modify: IModify, http: IHttp, persis: IPersistence): Promise<void> {
-        const builder = modify.getCreator().startMessage().setSender(context.getSender()).setRoom(context.getRoom());
+        const mg = modify.getCreator().startMessage().setSender(context.getSender()).setRoom(context.getRoom());
             try{
              const term = context.getArguments().join(' ').trim();
 
           const wik = await this.app.getWikiGetter().getOne(this.app.getLogger(), http, term, read);
 
 
-		    builder.setText(wik.extract);
+		    mg.setText(wik.mssg);
          
-            await modify.getCreator().finish(builder);
+            await modify.getCreator().finish(mg);
             }catch (e) {
             this.app.getLogger().error('Failed getting text', e);
-            builder.setText('An error occurred when trying to send text :');
+            mg.setText('An error occurred when trying to send text :');
 
-            modify.getNotifier().notifyUser(context.getSender(), builder.getMessage());
+            modify.getNotifier().notifyUser(context.getSender(), mg.getMessage());
          }
         }
     

@@ -2,10 +2,11 @@ import { ISlashCommandPreviewItem, SlashCommandPreviewItemType } from '@rocket.c
 import { HttpStatusCode, IHttp, ILogger, IRead } from '@rocket.chat/apps-engine/definition/accessors';
 
 export class WikiResult {
-    public extract: string;
+    public mssg: string;
   constructor(data?: any) {
         if (data) {
-            this.extract = data.extract as string;
+            this.mssg = data.extract as string;
+           
         }
-
+        
 }}
