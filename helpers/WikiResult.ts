@@ -3,10 +3,11 @@ import { HttpStatusCode, IHttp, ILogger, IRead } from '@rocket.chat/apps-engine/
 
 export class WikiResult {
     public mssg: string;
-  constructor(data?: any) {
+    constructor(data?: any) {
         if (data) {
             this.mssg = data.extract as string;
-           
+
         }
-        
-}}
+
+    }
+}
