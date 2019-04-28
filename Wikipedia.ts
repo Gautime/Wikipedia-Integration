@@ -1,5 +1,6 @@
 import {
     IAppAccessors,
+    IHttp,
     IConfigurationExtend,
     IEnvironmentRead,
     ILogger,
@@ -19,11 +20,13 @@ export class WikipediaApp extends App {
     constructor(info: IAppInfo, logger: ILogger, accessors: IAppAccessors) {
         super(info, logger, accessors);
 
-		this.wikiGetter = new WikiGetter();
+        this.wikiGetter = new WikiGetter();
+        
     }
 
     public getWikiGetter(): WikiGetter {
         return this.wikiGetter;
+
     }
     protected async extendConfiguration(configuration: IConfigurationExtend, environmentRead: IEnvironmentRead): Promise<void> {
         await configuration.slashCommands.provideSlashCommand(new WikiCommand(this));

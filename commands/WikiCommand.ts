@@ -2,6 +2,8 @@ import { IHttp, IModify, IPersistence, IRead } from '@rocket.chat/apps-engine/de
 import { ISlashCommand, ISlashCommandPreview, ISlashCommandPreviewItem, SlashCommandContext } from '@rocket.chat/apps-engine/definition/slashcommands';
 import { WikipediaApp } from '../Wikipedia';
 import { WikiResult } from '../helpers/WikiResult';
+import { WikiGetter } from '../helpers/WikiGetter';
+import { formatWithOptions } from 'util';
 
 
 export class WikiCommand implements ISlashCommand {
@@ -12,12 +14,12 @@ export class WikiCommand implements ISlashCommand {
 
 	    constructor(private readonly app: WikipediaApp) { }
 
-	  public async executor(context: SlashCommandContext, read: IRead, modify: IModify, http: IHttp, persis: IPersistence): Promise<void> {
+	 public async executor(context: SlashCommandContext, read: IRead, modify: IModify, http: IHttp, persis: IPersistence): Promise<void> {
         
-        const parame = context.getArguments().join(' ');
+       const parame = context.getArguments().join(' ');
 
-        if(!parame)
-        throw new Error('Method not implemented.');
+     if(!parame)
+       throw new Error('Method not implemented.');
      }  
 
        public async executeitem(item: ISlashCommandPreviewItem, context: SlashCommandContext, read: IRead,
@@ -26,14 +28,11 @@ export class WikiCommand implements ISlashCommand {
             try{
              const term = context.getArguments().join(' ').trim();
 
-            const wik = await this.app.getWikiGetter().getOne(this.app.getLogger(), http, term, read);
+          const wik = await this.app.getWikiGetter().getOne(this.app.getLogger(), http, term, read);
 
 
-		    builder.addAttachment({
-                
-                text: wik.mssg
-                
-            });
+		    builder.setText(wik.extract);
+         
             await modify.getCreator().finish(builder);
             }catch (e) {
             this.app.getLogger().error('Failed getting text', e);

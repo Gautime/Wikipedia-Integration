@@ -13,16 +13,24 @@ export class WikiGetter {
             search = 'random';
             }
             const response = await http.get(`${this.url}${search}`);
-
+            try{
             if (response.statusCode !== HttpStatusCode.OK || !response.data || !response.data.extract) {
-                logger.debug('Did not get a valid response', response);
-                throw new Error('Unable to retrieve the content.');
+               logger.debug('Did not get a valid response', response);
+                throw new Error('Unable to retrieve the text.');
             } else if (typeof response.data.extract !== 'object') {
-                logger.debug('The response data is not an Object:', response.data.extract);
+               logger.debug('The response data is not an Object:', response.data.extract);
                 throw new Error('Data is in a format we don\'t understand.');
+                       
+            }
+            return new WikiResult(response.data);
+        }catch(e){
+            return new WikiResult(response.data);
+
             }
             
-            return new WikiResult(response.data.extract);
+            //console.log('The returned data:', response.data.query);
         }
+
+        
 
 }
