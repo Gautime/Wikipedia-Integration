@@ -1,6 +1,6 @@
 {
     "id": "bc372a64-0231-424f-9dc8-4eca0b1b34e5",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "requiredApiVersion": "^1.4.0",
     "iconFile": "icon.png",
     "author": {
@@ -11,5 +11,5 @@
     "name": "Wikipedia",
     "nameSlug": "wikipedia",
     "classFile": "Wikipedia.ts",
-    "description": "Search Wikipedia using /wiki search-term"
+    "description": "Search Wikipedia using /wiki search-term (Powered by wikipedia.org)"
 }
