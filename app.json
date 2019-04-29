@@ -5,11 +5,11 @@
     "iconFile": "icon.png",
     "author": {
         "name": "Kapil.Gautam",
-        "homepage": "Kapil.gautam",
-        "support": "kapil.gautam"
+        "homepage": "https://rocket.chat/",
+        "support": "https://rocket.chat/"
     },
     "name": "Wikipedia",
     "nameSlug": "wikipedia",
     "classFile": "Wikipedia.ts",
-    "description": "Integrate wikipedia with Rocket.Chat"
+    "description": "Search Wikipedia using /wiki search-term"
 }
